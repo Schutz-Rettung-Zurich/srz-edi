@@ -39,7 +39,7 @@ Grundsätzlich finden sich alle Informationen über unser organisiertes Mapping 
 
 ### Objekte
 
-*(siehe auch critical_nodes.md)*
+*siehe auch [critical_nodes.md](critical_nodes.md)*
 
 Einige Objekte kurz als Liste welche in unsere Tätigkeit besonders wichtig sind und überwacht werden sollten. Detaillierte Beschreibungen der Objekte findet ihr in der oben erwähnten Datei.
 
