@@ -2,8 +2,8 @@
 
 # Allgemein
 
-* Frontend: https://gitlab.dev.ifs.hsr.ch/se-na/sa-monitoring-osm-frontend
-* Backend: https://gitlab.dev.ifs.hsr.ch/DNA/sa-monitoring-osm-backend
+* Frontend: https://github.com/Schutz-Rettung-Zurich/srzedi/tree/main/Frontend
+* Backend: https://github.com/Schutz-Rettung-Zurich/srzedi/tree/main/Backend
 * Bedienungsanleitung: [Hier](./UserManual.md)
 
 # Installation
