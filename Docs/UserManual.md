@@ -5,8 +5,8 @@
 Das Targeted Monitoring Tool wurde im Auftrag von Schutz & Rettung Zürich (SRZ) entwickelt, welche für sicherheitsrelevante Zwecke [OpenStreetMap](https://www.openstreetmap.org/) verwendet. Trotz des Vertrauens in die OSM-Community, braucht es für heikle Kartenelemente eine Kontrolle, d.h. ein Monitoring der kritischen Datenobjekte. Da die Überwachung von Changesets über Objekt-Tags bei diversen bestehenden Monitoring-Tools nicht gegeben ist, kommt das Targeted Monitoring Tool zum Einsatz, welches Changesets nach Objekt-Tags filtert. So können ungewollte Änderungen erkannt und korrigiert werden.
 
 * Installationsanleitung: [Hier](./InstallGuide.md)
-* Frontend-Code: https://gitlab.dev.ifs.hsr.ch/se-na/sa-monitoring-osm-frontend
-* Backend-Code: https://gitlab.dev.ifs.hsr.ch/DNA/sa-monitoring-osm-backend
+* Frontend-Code: https://github.com/Schutz-Rettung-Zurich/srzedi/tree/main/Frontend
+* Backend-Code: https://github.com/Schutz-Rettung-Zurich/srzedi/tree/main/Backend
 
 ## Anwendung
 
