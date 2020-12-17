@@ -1,0 +1,232 @@
+.ui.grid > .column:not(.row),
+.ui.grid > .row > .column {
+    position: relative;
+    display: inline-block;
+    padding-left: 0;
+    padding-right: 0;
+    vertical-align: top;
+}
+
+.right {
+    text-align: right;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.center {
+    justify-content: center;
+}
+
+h2 + div {
+    display: inline-block;
+    float: right;
+}
+
+h2 {
+    display: inline-block;
+}
+
+.flex > div {
+    flex: 2;
+    width: 100%;
+    margin-left: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    border-color: darkgreen;
+    background-color: #CCFF33;
+}
+
+.greenBorder {
+    border-radius: 5px;
+    background-color: #CCFF33;
+}
+
+.greenBorder p {
+    display: inline-block;
+    margin-right: 0;
+}
+
+.greenBorder .ui.dropdown > .text {
+    display: none;
+}
+
+.greenBorder .ui.dropdown .menu {
+    left: -80px;
+}
+
+.greenBorder .ui.dropdown {
+    display: inline-block;
+    padding: 0 1em 0 1em;
+    margin: 0;
+}
+
+
+.listEntry > div > .dropdown > .default {
+    color: darkgreen !important;
+}
+
+.flex > div > div {
+    margin-left: 5px;
+}
+
+.flex > div > div > .dropdown {
+    width: 100%;
+}
+
+.grid > div > .right {
+    margin-bottom: 1px;
+}
+
+.grid > div > .segment {
+    margin-top: 1px;
+}
+
+button:focus {
+    border-width: 3px;
+    border-style: solid;
+    border-color: #CCFF33;
+}
+
+.listEntry {
+    width: 100%;
+    padding: 0;
+    border-radius: 5px;
+    margin-bottom: 0.1em;
+}
+
+.list p {
+    text-align: left;
+    margin: 0.3em 1em 0 1em;
+}
+
+.list {
+    height: 71vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.filter {
+    width: 18em;
+    padding: 2px;
+    display: flex;
+    align-items: stretch;
+    margin: 5px 8px 5px 0;
+}
+
+.filterList {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.margin {
+    padding: 3px;
+}
+
+.filter > a {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.filter > a {
+    width: 60%;
+}
+
+.filter > button, .filter > .edit {
+    width: 20%;
+    background-color: #f0f0f0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.filter > button:hover, .filter > a:hover {
+    background-color: lightgray !important;
+}
+
+.filterEdit > button, .filterEdit > a {
+    margin-top: 0.5em !important;
+}
+
+.realese {
+    border-style: none;
+}
+
+.realese > a {
+    width: 100%;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.inline-block > p, .inline-block > button {
+    display: inline-block;
+}
+
+.inline-block > button {
+    margin-left: 0.6em;
+}
+
+.center > p {
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    margin: 0.2em 0 0 0.7em !important;
+}
+
+.speciale {
+    display: block;
+    margin: 0 !important;
+}
+
+.status {
+    background: #CCFF33 !important;
+    font-size: small !important;
+    padding: 0.4em 0.8em !important;
+    margin: 0 0.2em !important;
+    box-shadow: 1px 2px #888888 !important;
+}
+
+.status:hover {
+    background: #CCDD00 !important;
+}
+
+.error p {
+    color: red;
+}
+
+.error .segment {
+    border-color: red;
+}
+
+.FFCCCB {
+    background: #FFCCCB !important;
+}
+
+@media ( min-width: 800px) {
+    h2 {
+        margin-right: 0.5em !important;
+    }
+}
+
+@media ( max-width: 670px) {
+    .sizeChange {
+        display: block;
+    }
+
+    .greenBorder .ui.dropdown .menu {
+        left: -30px;
+    }
+
+    .greenBorder p {
+        display: block;
+    }
+}
+
+

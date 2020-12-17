@@ -1,0 +1,18 @@
+.input {
+    width: 100%;
+    display: block;
+}
+
+.label {
+    display: inline;
+}
+
+.div {
+    display: inline;
+    width: 2em;
+}
+
+[invisible=true] {
+    display: none;
+}
+

@@ -1,0 +1,84 @@
+networks:
+  dbnet:
+    driver: overlay
+    name: dbnet
+  default:
+    driver: overlay
+  transit:
+    driver: overlay
+    name: transit
+
+services:
+  celerybeat:
+    command: celery -A config beat -l INFO
+    depends_on:
+    - postgres
+    - redis
+    env_file: .env
+    image: ${IMAGE_REGISTRY:-mypr}/django:${IMAGE_TAG:-latest}
+    networks:
+      dbnet: null
+    user: django
+
+  celeryworker:
+    command: celery -A config worker -l INFO
+    depends_on:
+    - postgres
+    - redis
+    env_file: .env
+    image: ${IMAGE_REGISTRY:-mypr}/django:${IMAGE_TAG:-latest}
+    networks:
+      dbnet: null
+    user: django
+
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    command: /gunicorn.sh
+    depends_on:
+    - postgres
+    - redis
+    env_file: .env
+    image: ${IMAGE_REGISTRY:-mypr}/django:${IMAGE_TAG:-latest}
+    networks:
+      dbnet: null
+      transit: null
+    user: django
+
+  nginx:
+    build:
+      context: ./compose/nginx
+      dockerfile: Dockerfile
+    depends_on:
+    - django
+    image: ${IMAGE_REGISTRY:-mypr}/nginx:${IMAGE_TAG:-latest}
+    networks:
+      default: null
+      transit: null
+    ports:
+    - 0.0.0.0:80:80/tcp
+
+  postgres:
+    build:
+      context: ./compose/postgres
+      dockerfile: Dockerfile
+    env_file: .env
+    image: ${IMAGE_REGISTRY:-mypr}/postgres:${IMAGE_TAG:-latest}
+    networks:
+      dbnet: null
+    volumes:
+    - postgres_data:/var/lib/postgresql/data:rw
+    - postgres_backup:/backups:rw
+
+  redis:
+    image: redis:latest
+    networks:
+      dbnet: null
+
+version: '3.7'
+
+volumes:
+  postgres_backup: {}
+  postgres_data: {}
+

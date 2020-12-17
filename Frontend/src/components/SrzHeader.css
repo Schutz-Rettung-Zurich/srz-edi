@@ -1,0 +1,41 @@
+img {
+    height: 2em;
+}
+
+h1 {
+    max-width: 60%;
+    margin-top: 0.3rem;
+    padding: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.green {
+    background-color: #CCFF33;
+    align-items: center;
+    justify-content: space-between
+}
+
+.green button {
+    background: none;
+}
+
+.image {
+    border-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 0.2rem;
+}
+
+.logout {
+    max-width: 20%;
+    color: blue;
+    border-style: none;
+    font-size: 0.8rem;
+    padding-top: 0.25rem;
+    margin: 0.2rem;
+    margin-right: 0.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

@@ -1,0 +1,34 @@
+.cmap-container .cmap-map {
+    height: 70%;
+    width: 100%;
+}
+
+.cmap-container button {
+    display: none;
+}
+
+.cmap-container .cmap-sidebar {
+    position: absolute;
+    top: 70%;
+    left: -10px;
+    width: 100%;
+    height: 28%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.cmap-filter-changes-section {
+    display: none !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.cmap-container .cmap-diff-metadata,
+.cmap-container .cmap-diff-members,
+.cmap-container .cmap-diff-tags {
+    display: none;
+}
+
+
