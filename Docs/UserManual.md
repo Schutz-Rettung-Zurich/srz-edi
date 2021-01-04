@@ -61,7 +61,7 @@ Im Bereich Filter-Freigabe können Sie Mitarbeiter hinzufügen. Geben Sie dazu d
 
 Freigegebenen Filter können Sie zwar nicht bearbeiten, aber mit einem Klick auf das Augen-Symbol die Filter-Definition einsehen.
 
-![Filter andehen](./images/FilterView.png)
+![Filter ansehen](./images/FilterView.png)
 
 ## Changesets überwachen
 
