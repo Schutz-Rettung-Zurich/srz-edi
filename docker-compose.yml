@@ -1,0 +1,133 @@
+# for local development
+
+networks:
+  default:
+
+services:
+  access-rights:
+    image: ${IMAGE_REGISTRY:-mypr}/django:${IMAGE_TAG:-latest}
+    entrypoint: []
+    command: bash -c 'mkdir -p /file-serve/static && mkdir -p /file-serve/media && chown -R django /file-serve'
+    user: root
+    volumes:
+      - django-file-serve:/file-serve
+
+  celerybeat: &backend
+    command: celery -A config beat -l INFO
+    depends_on:
+    - postgres
+    - redis
+    environment: &env-vars
+    - DJANGO_DEBUG=False
+    - REDIS_HOST=redis
+    - POSTGRES_HOST=postgres
+    - POSTGRES_USER=osmcha
+    - POSTGRES_PASSWORD=testPW13
+    - DJANGO_ADMIN_URL=
+    - DJANGO_SETTINGS_MODULE=config.settings.production
+    - DJANGO_SECRET_KEY=change-me-in-production!
+    - DJANGO_STATIC_ROOT=/file-serve/static/
+    - DJANGO_STATIC_URL=/file-serve/static/
+    - DJANGO_MEDIA_ROOT=/file-serve/media/
+    - DJANGO_MEDIA_URL=/file-serve/media/
+    # Security! Better to use DNS for this task, but you can use redirect
+    - DJANGO_SECURE_SSL_REDIRECT=False
+    - CHANGESETS_FILTER=osmchadjango/changeset/fixtures/switzerland.geojson
+    # The following lines shouldn't be in the repo:
+    # application settings
+    - OAUTH_OSM_KEY=<osm-key>
+    - OAUTH_OSM_SECRET=<osm-secret>
+    # IP/URL where the frontend runs, must be the same as "REACT_APP_HOME_URL" in the frontend
+    - OAUTH_REDIRECT_URI=http://localhost/
+    # - OAUTH_REDIRECT_URI=http://152.96.56.12:40000/
+    # env_file: Backend/.env
+    image: ${IMAGE_REGISTRY:-mypr}/django:${IMAGE_TAG:-latest}
+    networks:
+      - default
+    user: django
+    volumes:
+      - django-file-serve:/file-serve
+
+  celeryworker:
+    <<: *backend
+    command: celery -A config worker -l INFO
+
+  django:
+    <<: *backend
+    build:
+      context: Backend/
+      dockerfile: ./docker/django/Dockerfile
+    command: python manage.py runserver_plus
+      
+  frontend:
+    build:
+      context: Frontend/
+      dockerfile: Dockerfile
+      target: build
+    command: ["npm", "start"]
+    stdin_open: true
+    user: "1000"
+    environment:
+      # IP/URL where the frontend runs
+      - REACT_APP_HOME_URL=http://localhost/
+      # IP/URL where the backend runs
+      - REACT_APP_API=http://localhost/api/v1
+    networks:
+      - default
+
+  reverse-proxy:
+    image: registry.dev.ifs.hsr.ch/geometalab/env-configurable-caddy:latest
+    environment:
+      # See https://caddyserver.com/docs/quick-starts/caddyfile for details
+      CADDY_CONFIG: |
+        :80 {
+          route {
+            reverse_proxy /api* {
+              to django:5000
+            }
+            reverse_proxy /admin* {
+              to django:5000
+            }
+            handle /file-serve* {
+              uri strip_prefix /file-serve
+              file_server /* {
+                root /file-serve
+                browse
+              }
+            }
+            reverse_proxy /* {
+              to frontend:3000
+            }
+          }
+        }
+    volumes:
+      - django-file-serve:/file-serve
+    ports:
+    - 0.0.0.0:80:80/tcp
+    networks:
+      - default
+
+  postgres:
+    environment: *env-vars
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile
+    env_file: Backend/.env
+    image: ${IMAGE_REGISTRY:-mypr}/postgres:${IMAGE_TAG:-latest}
+    volumes:
+    - postgres_data:/var/lib/postgresql/data:rw
+    - postgres_backup:/backups:rw
+    networks:
+      - default
+
+  redis:
+    image: redis:latest
+    networks:
+      - default
+
+version: '3.7'
+
+volumes:
+  postgres_backup: {}
+  postgres_data: {}
+  django-file-serve: {}
