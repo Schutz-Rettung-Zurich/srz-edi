@@ -1,0 +1,22 @@
+services:
+  django:
+    
+    image: instituteforsoftware/srz-edi:srz-edi-django-${VERSION:-latest}
+    build:
+      context: Backend/
+      dockerfile: ./docker/django/Dockerfile
+
+  frontend:
+    image: instituteforsoftware/srz-edi:srz-edi-frontend-${VERSION:-latest}
+    build:
+      context: Frontend/
+      dockerfile: Dockerfile
+      target: build
+
+  postgres:
+    image: instituteforsoftware/srz-edi:srz-edi-postgres-${VERSION:-latest}
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile
+
+version: '3.7'

@@ -7,16 +7,16 @@ COPY ./requirements /requirements
 
 RUN apt-get update -y && \
     apt-get install --auto-remove -y \
-      binutils \
-      libproj-dev \
-      gdal-bin \
-      curl \
-      libcurl4-openssl-dev \
-      locales \
-      libgeos-dev\
-      libyaml-dev\
-      libgnutls28-dev\
-      apt-transport-https && \
+    binutils \
+    libproj-dev \
+    gdal-bin \
+    curl \
+    libcurl4-openssl-dev \
+    locales \
+    libgeos-dev\
+    libyaml-dev\
+    libgnutls28-dev\
+    apt-transport-https && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip install -r /requirements/production.txt \
@@ -26,8 +26,8 @@ RUN pip install -r /requirements/production.txt \
 COPY . /app
 RUN chown -R django /app
 
-COPY ./compose/django/gunicorn.sh /gunicorn.sh
-COPY ./compose/django/entrypoint.sh /entrypoint.sh
+COPY ./docker/django/gunicorn.sh /gunicorn.sh
+COPY ./docker/django/entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r//' /entrypoint.sh \
     && sed -i 's/\r//' /gunicorn.sh \
     && chmod +x /entrypoint.sh \
