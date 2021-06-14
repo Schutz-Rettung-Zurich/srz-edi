@@ -1,0 +1,93 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - main
+      - feature/automation
+
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+
+  # Run tests for any PRs.
+  pull_request:
+
+env:
+  DOCKERHUB_LOGIN_USERNAME: ${{ secrets.DOCKERHUB_LOGIN_USERNAME }}
+  DOCKERHUB_LOGIN_PASSWORD: ${{ secrets.DOCKERHUB_LOGIN_PASSWORD }}
+
+jobs:
+  # Run tests.
+  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
+  test:
+    runs-on: ubuntu-latest
+    # TODO: myabe create tests with compose or remove section
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        run: |
+          # if [ -f docker-compose.test.yml ]; then
+          #   docker-compose --file docker-compose.test.yml build
+          #   docker-compose --file docker-compose.test.yml run sut
+          # else
+          #   docker build . --file Dockerfile
+          # fi
+          echo "Todo, not running any tests"
+
+  # Push image to GitHub Packages.
+  # See also https://docs.docker.com/docker-hub/builds/
+  push:
+    # Ensure test job passes before pushing image.
+    needs: test
+
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log into registry
+        run: echo "$DOCKERHUB_LOGIN_PASSWORD" | docker login -u "${DOCKERHUB_LOGIN_USERNAME}" --password-stdin
+
+      - name: Build and Push Images
+        run: |
+          if [ -f docker-compose.build.yml ]; then
+            # Strip git ref prefix from version
+            VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+            # Strip "v" prefix from tag name
+            [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+            # Use Docker `latest` tag convention
+            [ "$VERSION" == "main" ] && VERSION=latest
+
+            echo VERSION=$VERSION
+
+            docker-compose -f docker-compose.build.yml build
+            docker-compose -f docker-compose.build.yml push
+          else
+            echo "Missing docker-compose.build.yml file."
+          fi
+          
+          # TO BE DELETED WHEN EVRYTHING WORKS
+          # IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          # IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Strip git ref prefix from version
+          # VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Strip "v" prefix from tag name
+          # [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Use Docker `latest` tag convention
+          # [ "$VERSION" == "main" ] && VERSION=latest
+
+          # echo IMAGE_ID=$IMAGE_ID
+          # echo VERSION=$VERSION
+
+          # docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          # docker push $IMAGE_ID:$VERSION
