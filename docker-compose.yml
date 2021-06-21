@@ -1,5 +1,12 @@
 # for local development
 
+# to run python tests:
+# docker-compose run --rm -e DJANGO_SETTINGS_MODULE=config.settings.tests django  python manage.py test
+
+# setup project locally (migrations and static files):
+# docker-compose run --rm django ./manage.py migrate --noinput
+# docker-compose run --rm django ./manage.py collectstatic --noinput
+
 networks:
   default:
 
@@ -19,6 +26,9 @@ services:
     - postgres
     - redis
     environment: &env-vars
+    # uncomment next line to change the overpass api from switzerland
+    # to something more generic, ie. global
+    # - DJANGO_OVERPASS_URL=http://overpass-api.de/api/interpreter
     - DJANGO_DEBUG=False
     - REDIS_HOST=redis
     - POSTGRES_HOST=postgres
@@ -34,12 +44,13 @@ services:
     # Security! Better to use DNS for this task, but you can use redirect
     - DJANGO_SECURE_SSL_REDIRECT=False
     - CHANGESETS_FILTER=osmchadjango/changeset/fixtures/switzerland.geojson
-    # The following lines shouldn't be in the repo:
+    # The osm key/secret should never be checked in
     # application settings
-    - OAUTH_OSM_KEY=<osm-key>
-    - OAUTH_OSM_SECRET=<osm-secret>
+    - OAUTH_OSM_KEY=<your-osm-key>
+    - OAUTH_OSM_SECRET=<your-osm-secret>
+    - CELERY_BROKER_URL=redis://redis:6379
     # IP/URL where the frontend runs, must be the same as "REACT_APP_HOME_URL" in the frontend
-    - OAUTH_REDIRECT_URI=http://localhost/
+    - OAUTH_REDIRECT_URI=http://localhost:8080/
     # - OAUTH_REDIRECT_URI=http://152.96.56.12:40000/
     # env_file: Backend/.env
     # for production builds see docker-compose.build.yml
@@ -54,12 +65,16 @@ services:
     <<: *backend
     command: celery -A config worker -l INFO
 
-  django:
+  django: &django
     <<: *backend
     build:
       context: Backend/
       dockerfile: ./docker/django/Dockerfile
-    command: python manage.py runserver_plus
+    command: >-
+      ./manage.py runserver_plus 0.0.0.0:5000
+    volumes:
+      - django-file-serve:/file-serve
+      - ./Backend:/app
       
   frontend:
     # for production builds see docker-compose.build.yml
@@ -73,9 +88,9 @@ services:
     user: "1000"
     environment:
       # IP/URL where the frontend runs
-      - REACT_APP_HOME_URL=http://localhost/
+      - REACT_APP_HOME_URL=http://localhost:8080/
       # IP/URL where the backend runs
-      - REACT_APP_API=http://localhost/api/v1
+      - REACT_APP_API=http://localhost:8080/api/v1
     networks:
       - default
 
@@ -84,7 +99,7 @@ services:
     environment:
       # See https://caddyserver.com/docs/quick-starts/caddyfile for details
       CADDY_CONFIG: |
-        :80 {
+        :8080 {
           route {
             reverse_proxy /api* {
               to django:5000
@@ -107,7 +122,7 @@ services:
     volumes:
       - django-file-serve:/file-serve
     ports:
-    - 0.0.0.0:80:80/tcp
+    - 0.0.0.0:8080:8080/tcp
     networks:
       - default
 
@@ -119,7 +134,8 @@ services:
       context: ./docker/postgres
       dockerfile: Dockerfile
     env_file: Backend/.env
-    image: ${IMAGE_REGISTRY:-mypr}/postgres:${IMAGE_TAG:-latest}
+    # image: ${IMAGE_REGISTRY:-mypr}/postgres:${IMAGE_TAG:-latest}
+    image: local/postgres:${IMAGE_TAG:-latest}
     volumes:
     - postgres_data:/var/lib/postgresql/data:rw
     - postgres_backup:/backups:rw

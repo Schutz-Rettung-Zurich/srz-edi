@@ -56,6 +56,7 @@ THIRD_PARTY_APPS = (
     "corsheaders",
     "django_filters",
     "drf_yasg",
+    "django_extensions",
 )
 
 # Apps specific for this project go here.
@@ -229,7 +230,11 @@ ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 
 # CELERY CONFIGURATION
-BROKER_URL = env("CELERY_BROKER_URL", default="redis://localhost:6379/0")
+CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="redis://localhost:6379/0")
+# using serializer name
+CELERY_TASK_SERIALIZER = "pickle"
+CELERY_RESULT_SERIALIZER = "pickle"
+CELERY_ACCEPT_CONTENT = {"pickle"}
 
 # Some really nice defaults
 # ACCOUNT_AUTHENTICATION_METHOD = 'username'
@@ -303,6 +308,10 @@ LOGGING = {
 }
 
 # PROJECT CONFIGURATION
+
+OVERPASS_URL = env.str(
+    "DJANGO_OVERPASS_URL", default="https://overpass.osm.ch/api/interpreter"
+)
 
 # If you want to filter the import of changesets to a defined area of the world,
 # define CHANGESETS_FILTER as a path to a GeoJSON file.

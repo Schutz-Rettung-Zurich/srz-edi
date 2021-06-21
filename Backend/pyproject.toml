@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "srz-edi-backend"
+version = "0.0.1-alpha"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+gevent = "20.9.0"
+gunicorn = "20.0.4"
+Django = "2.2.24"
+django-debug-toolbar = "3.1.1"
+django-environ = "0.4.5"
+django-braces = "1.14.0"
+django-model-utils = "4.0.0"
+social-auth-app-django = "^4.0.0"
+social-auth-core = "^4.1.0"
+djangorestframework = "3.11.2"
+djangorestframework-gis = "0.16"
+djangorestframework-csv = "2.1.0"
+django-filter = "2.4.0"
+django-cors-headers = "3.5.0"
+drf-yasg = "1.17.1"
+psycopg2-binary = "2.8.6"
+unicode-slugify = "0.1.3"
+django-autoslug = "1.9.8"
+pytz = "2020.1"
+PyYAML = "5.3.1"
+osmcha = "0.8.2"
+GitPython = "3.1.9"
+osm2geojson = "0.1.28"
+Shapely = "1.7.1"
+requests = "^2.25.1"
+celery = "^5.1.0"
+django-redis = "^5.0.0"
+redis = "^3.5.3"
+
+[tool.poetry.dev-dependencies]
+django-extensions = "3.0.9"
+coverage = "5.3"
+Sphinx = "3.2.1"
+Werkzeug = "1.0.1"
+django-debug-toolbar = "3.1.1"
+sqlparse = "0.4.1"
+bpython = "0.20"
+flake8 = "3.8.4"
+django-test-plus = "1.4.0"
+factory-boy = "3.1.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
