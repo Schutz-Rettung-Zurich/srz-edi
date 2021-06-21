@@ -1,0 +1,176 @@
+networks:
+  web:
+    external: true
+    name: web
+
+services:
+  access-rights:
+    image: instituteforsoftware/srz-edi:srz-edi-django-latest
+    entrypoint: []
+    command: bash -c 'mkdir -p /file-serve/static && mkdir -p /file-serve/media && chown -R django /file-serve'
+    user: root
+    volumes:
+      - django-file-serve:/file-serve
+
+  celerybeat: &backend
+    environment: &env-vars
+      - DJANGO_DEBUG=False
+      - REDIS_HOST=redis
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=osmcha
+      - POSTGRES_PASSWORD=Lu3m9BBzD4IHlnfXqQduUAwiNHrLyUuEHl5FG7VeFp5o07
+      - DJANGO_ADMIN_URL=
+      - DJANGO_SETTINGS_MODULE=config.settings.production
+      - DJANGO_SECRET_KEY=gnIbiWErd671ySollEFrsMmQ6tAJ0ux0mUbIIP89ng
+      - DJANGO_STATIC_ROOT=/file-serve/static/
+      - DJANGO_STATIC_URL=/file-serve/static/
+      - DJANGO_MEDIA_ROOT=/file-serve/media/
+      - DJANGO_MEDIA_URL=/file-serve/media/
+      # Security! Better to use DNS for this task, but you can use redirect
+      - DJANGO_SECURE_SSL_REDIRECT=False
+      - CHANGESETS_FILTER=osmchadjango/changeset/fixtures/switzerland.geojson
+      # The following lines shouldn't be in the repo:
+      # application settings
+      # TODO
+      - OAUTH_OSM_KEY=
+      - OAUTH_OSM_SECRET=
+      # TODO
+      - OAUTH_REDIRECT_URI=https://srz.ifs.ost.ch/
+      # - OAUTH_REDIRECT_URI=http://152.96.56.12:40000/
+    command: celery -A config beat -l INFO
+    image: instituteforsoftware/srz-edi:srz-edi-django-latest
+    networks:
+      - default
+    user: django
+    volumes:
+      - django-file-serve:/file-serve
+    deploy:
+      labels:
+        - "traefik.enable=false"
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 180s
+
+  celeryworker:
+    <<: *backend
+    command: celery -A config worker -l INFO
+
+  django:
+    <<: *backend
+    command: ./gunicorn.sh
+
+  frontend:
+    image: instituteforsoftware/srz-edi:srz-edi-frontend-latest
+    command: >-
+      sh -c '
+      npm run-script build
+      &&
+      chown -R 100 /app/build
+      '
+    environment:
+    - REACT_APP_HOME_URL=https://srz.ifs.ost.ch/
+    - REACT_APP_API=https://srz.ifs.ost.ch/api/v1
+    volumes:
+      - frontend-data:/app/build
+    deploy:
+      labels:
+        - "traefik.enable=false"
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 180s
+
+  postgres:
+    environment: *env-vars
+    image: instituteforsoftware/srz-edi:srz-edi-postgres-latest
+    volumes:
+    - postgres_data:/var/lib/postgresql/data:rw
+    - postgres_backup:/backups:rw
+    deploy:
+      labels:
+        - "traefik.enable=false"
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 180s
+
+  redis:
+    image: redis:latest
+    deploy:
+      labels:
+        - "traefik.enable=false"
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 180s
+
+  reverse-proxy:
+    image: geometalab/env-configurable-caddy:latest
+    environment:
+      # See https://caddyserver.com/docs/quick-starts/caddyfile for details
+      CADDY_CONFIG: |
+        :8000 {
+          route {
+            reverse_proxy /api* {
+              to django:5000
+            }
+            reverse_proxy /admin* {
+              to django:5000
+            }
+            handle /file-serve* {
+              uri strip_prefix /file-serve
+              file_server /* {
+                root /file-serve
+                browse
+              }
+            }
+            handle /look* {
+              uri strip_prefix /look
+              file_server {
+                root /frontend
+                browse
+              }
+            }
+            handle /* {
+              root * /frontend
+              file_server
+            }
+          }
+        }
+    networks:
+      - default
+      - web
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 180s
+    volumes:
+      - frontend-data:/frontend
+      - django-file-serve:/file-serve
+    
+
+version: '3.7'
+
+volumes:
+  postgres_backup: {}
+  postgres_data: {}
+  frontend-data: {}
+  django-file-serve: {}
+
