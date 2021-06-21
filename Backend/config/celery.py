@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import os
 
@@ -8,12 +8,12 @@ from celery import Celery
 
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 
-app = Celery('config',
-    backend='rpc://',
-    broker=settings.BROKER_URL
-    )
+app = Celery(
+    "config",
+    backend="rpc://",
+)
 
 app.conf.update(
     CELERY_TASK_RESULT_EXPIRES=10000,
@@ -21,5 +21,5 @@ app.conf.update(
 
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.
-app.config_from_object('django.conf:settings')
+app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
