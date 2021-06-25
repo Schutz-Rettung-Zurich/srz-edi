@@ -35,7 +35,9 @@ Fortschritte
 
 # Corporate Identity SRZ
 
-Solltest du dich an diesem Projekt beteiligen wollen achte darauf folgende CI/CD Vorgaben in diesem Repository zu verwenden. Solltest du die Software für dich verwenden, müssen alle Hinweise auf Schutz & Rettung entfertnt werden. Die Namensnennung muss dabei aber erhalten bleiben.
+Solltest du dich an diesem Projekt beteiligen wollen achte darauf folgende CI/CD Vorgaben in diesem Repository zu verwenden.
+Solltest du die Software für dich verwenden, müssen alle Hinweise auf Schutz & Rettung entfernt werden.
+Die Namensnennung muss dabei aber erhalten bleiben.
 
 ## HEX Code
 
