@@ -1,6 +1,6 @@
 # Schutz & Rettung Zürich - Emergency Data Inspector
 
-This Page is also available in English, please visit: [English 👈🏻](readme_en.md)
+This Page is also available in English, please visit: [English 👈🏻](README_en.md)
 
 ## Zweck
 
