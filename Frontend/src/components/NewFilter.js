@@ -44,6 +44,7 @@ class NewFilter extends React.Component {
             {key: 'sg', text: this.props.t('newFilter.options.zug'), value: 'Zug'},
             {key: 'sz', text: this.props.t('newFilter.options.schwyz'), value: 'Schwyz'},
             {key: 'ur', text: this.props.t('newFilter.options.schaffhausen'), value: 'Schaffhausen'}];
+            {key: 'sg', text: this.props.t('newFilter.options.stgallen'), value: 'St.Gallen'}];
     }
 
     handleChange(event, input) {
