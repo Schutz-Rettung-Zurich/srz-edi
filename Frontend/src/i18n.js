@@ -66,6 +66,8 @@ const resources = {
                     "zug": "Zug",
                     "schwyz": "Schwyz",
                     "schaffhausen": "Schaffhausen",
+                    "stgallen": "St.Gallen",
+                    "glarus": "Glarus",
                 },
                 "actions": {
                     "negativeTagCheck": "Der Tag {{tag}} wurde nicht gefunden",
