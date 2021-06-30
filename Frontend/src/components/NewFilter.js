@@ -57,7 +57,7 @@ class NewFilter extends React.Component {
             {key: 'ow', text: this.props.t('newFilter.options.obwalden'), value: 'Obwalden'},
             {key: 'sh', text: this.props.t('newFilter.options.schaffhausen'), value: 'Schaffhausen'},
             {key: 'sz', text: this.props.t('newFilter.options.schwyz'), value: 'Schwyz'},
-            {key: 'so', text: this.props.t('newFilter.options.stgallen'), value: 'Solothurn'},
+            {key: 'so', text: this.props.t('newFilter.options.solothurn'), value: 'Solothurn'},
             {key: 'sg', text: this.props.t('newFilter.options.stgallen'), value: 'St Gallen'},
             {key: 'ti', text: this.props.t('newFilter.options.tessin'), value: 'Tessin'},
             {key: 'tg', text: this.props.t('newFilter.options.thurgau'), value: 'Thurgau'},
