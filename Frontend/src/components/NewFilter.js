@@ -40,12 +40,32 @@ class NewFilter extends React.Component {
         this.handleNewSubmit = this.handleNewSubmit.bind(this);
         this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this);
         this.options = [
-            {key: 'zh', text: this.props.t('newFilter.options.zurich'), value: 'Zürich'},
-            {key: 'sg', text: this.props.t('newFilter.options.zug'), value: 'Zug'},
+            {key: 'ag', text: this.props.t('newFilter.options.aargau'), value: 'Aargau'},
+            {key: 'ai', text: this.props.t('newFilter.options.appenzellinnerhoden'), value: 'Appenzell Innerhoden'},
+            {key: 'ar', text: this.props.t('newFilter.options.appenzellausserhoden'), value: 'Appenzell Ausserhoden'},
+            {key: 'bl', text: this.props.t('newFilter.options.baselland'), value: 'Basel Land'},
+            {key: 'bs', text: this.props.t('newFilter.options.baselstadt'), value: 'Basel Stadt'},
+            {key: 'be', text: this.props.t('newFilter.options.bern'), value: 'Bern'},
+            {key: 'fr', text: this.props.t('newFilter.options.fribourg'), value: 'Fribourg'},
+            {key: 'ge', text: this.props.t('newFilter.options.genf'), value: 'Genf'},
+            {key: 'gl', text: this.props.t('newFilter.options.glarus'), value: 'Glarus'},
+            {key: 'gr', text: this.props.t('newFilter.options.graubünden'), value: 'Graubünden'},
+            {key: 'ju', text: this.props.t('newFilter.options.jura'), value: 'Jura'},
+            {key: 'lu', text: this.props.t('newFilter.options.luzern'), value: 'Luzern'},
+            {key: 'ne', text: this.props.t('newFilter.options.neuenburg'), value: 'Neuenburg'},
+            {key: 'nw', text: this.props.t('newFilter.options.nidwalden'), value: 'Nidwalden'},
+            {key: 'ow', text: this.props.t('newFilter.options.obwalden'), value: 'Obwalden'},
+            {key: 'sh', text: this.props.t('newFilter.options.schaffhausen'), value: 'Schaffhausen'},
             {key: 'sz', text: this.props.t('newFilter.options.schwyz'), value: 'Schwyz'},
-            {key: 'ur', text: this.props.t('newFilter.options.schaffhausen'), value: 'Schaffhausen'},
+            {key: 'so', text: this.props.t('newFilter.options.stgallen'), value: 'Solothurn'},
             {key: 'sg', text: this.props.t('newFilter.options.stgallen'), value: 'St Gallen'},
-            {key: 'gl', text: this.props.t('newFilter.options.glarus'), value: 'Glarus'}];
+            {key: 'ti', text: this.props.t('newFilter.options.tessin'), value: 'Tessin'},
+            {key: 'tg', text: this.props.t('newFilter.options.thurgau'), value: 'Thurgau'},
+            {key: 'ur', text: this.props.t('newFilter.options.uri'), value: 'Uri'},
+            {key: 'vd', text: this.props.t('newFilter.options.waadt'), value: 'Waadt'},
+            {key: 'vs', text: this.props.t('newFilter.options.wallis'), value: 'Wallis'},
+            {key: 'sg', text: this.props.t('newFilter.options.zug'), value: 'Zug'},           
+            {key: 'zh', text: this.props.t('newFilter.options.zurich'), value: 'Zürich'}];
     }
 
     handleChange(event, input) {
