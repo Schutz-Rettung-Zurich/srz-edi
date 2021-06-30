@@ -49,7 +49,7 @@ class NewFilter extends React.Component {
             {key: 'fr', text: this.props.t('newFilter.options.fribourg'), value: 'Fribourg'},
             {key: 'ge', text: this.props.t('newFilter.options.genf'), value: 'Genf'},
             {key: 'gl', text: this.props.t('newFilter.options.glarus'), value: 'Glarus'},
-            {key: 'gr', text: this.props.t('newFilter.options.graubünden'), value: 'Graubünden'},
+            {key: 'gr', text: this.props.t('newFilter.options.graubunden'), value: 'Graubünden'},
             {key: 'ju', text: this.props.t('newFilter.options.jura'), value: 'Jura'},
             {key: 'lu', text: this.props.t('newFilter.options.luzern'), value: 'Luzern'},
             {key: 'ne', text: this.props.t('newFilter.options.neuenburg'), value: 'Neuenburg'},
