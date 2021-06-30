@@ -138,7 +138,7 @@ class AreaOfInterest(models.Model):
         splittedAreas = areas.split(",")
         for area in splittedAreas:
             area = area.strip()
-            searchArea = area.replace("ü", "u").replace("ä", "a").replace("ö", "o")
+            searchArea = area.replace("ü", "u").replace("ä", "a").replace("ö", "o").replace(" ", "_")
             areaQuery += 'area[name="{areaName}"]->.search{searchArea};\n'.format(
                 areaName=area, searchArea=searchArea
             )
