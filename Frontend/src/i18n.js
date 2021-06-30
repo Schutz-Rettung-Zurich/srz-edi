@@ -62,7 +62,7 @@ const resources = {
             },
             "newFilter": {
                 "options": {
-                    "aaargau": "Aargau",
+                    "aargau": "Aargau",
                     "appenzellinnerhoden": "Appenzell Innerhoden",
                     "appenzellausserhoden": "Appenzell Ausserhoden",
                     "baselland": "Basel Land",
