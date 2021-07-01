@@ -41,8 +41,8 @@ class NewFilter extends React.Component {
         this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this);
         this.options = [
             {key: 'ag', text: this.props.t('newFilter.options.aargau'), value: 'Aargau'},
-            {key: 'ar', text: this.props.t('newFilter.options.appenzellausserhoden'), value: 'Appenzell Ausserrhoden'},
-            {key: 'ai', text: this.props.t('newFilter.options.appenzellinnerhoden'), value: 'Appenzell Innerrhoden'},
+            {key: 'ar', text: this.props.t('newFilter.options.appenzellausserrhoden'), value: 'Appenzell Ausserrhoden'},
+            {key: 'ai', text: this.props.t('newFilter.options.appenzellinnerrhoden'), value: 'Appenzell Innerrhoden'},
             {key: 'bl', text: this.props.t('newFilter.options.baselland'), value: 'Basel Land'},
             {key: 'bs', text: this.props.t('newFilter.options.baselstadt'), value: 'Basel Stadt'},
             {key: 'be', text: this.props.t('newFilter.options.bern'), value: 'Bern'},
