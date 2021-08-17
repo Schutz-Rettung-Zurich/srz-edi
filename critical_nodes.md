@@ -26,7 +26,6 @@ Zum Dispogebiet von SRZ gehören folgende Kantone inkl. Notrufnummer der Zustän
 | amenity   | fire_station        | Feuerwachen | [fire_station](https://wiki.openstreetmap.org/wiki/DE:Tag:amenity%3Dfire_station)
 | emergency   | ambulance_station        | Rettungswachen | [ambulance_station](https://wiki.openstreetmap.org/wiki/DE:Tag:emergency%3Dambulance_station)
 | aeroway   | helipad        | Helipads | [helipad](https://wiki.openstreetmap.org/wiki/DE:Tag:aeroway%3Dhelipad)
-| note   | Für Schutz & Rettung u.a einsatzrelevant.        | für Schutz und Rettung einsatzrelevant | [SRZ Note](https://wiki.openstreetmap.org/wiki/Organised_Editing/Activities/SchutzRettung_Rescue#Eindeutige_Erkennbarkeit)
 
 ----------
 
