@@ -17,17 +17,17 @@ Zum Dispogebiet von SRZ gehören folgende Kantone inkl. Notrufnummer der Zustän
 
 | Node      | Tag | Beschreibung | Wiki Link
 | ----------- | ----------- | ----------- | ----------- |
-| amenity   | hospital        | Spitäler | [hospital](https://wiki.openstreetmap.org/wiki/DE:Tag:amenity%3Dhospital)
-| amenity      | nursing_home       | Altersheime, Behindertenheime, Heime| [nursing_home](https://wiki.openstreetmap.org/wiki/DE:Tag:amenity%3Dnursing_home)
-| amenity      | ?       | Sozialeinrichtungen| [?](https://wiki.openstreetmap.org/wikiDE:Tag:amenity%3Dnursing_home)
-| railway   | station        | Bahnhöfe | [railway_station](https://wiki.openstreetmap.org/wiki/DE:Tag:railway%3Dstation)
-| railway   | tram        | Tramstationen | [tram_station](https://wiki.openstreetmap.org/wiki/Trams)
-| amenity   | fire_station        | Feuerwachen | [fire_station](https://wiki.openstreetmap.org/wiki/DE:Tag:amenity%3Dfire_station)
-| emergency   | ambulance_station        | Rettungswachen | [ambulance_station](https://wiki.openstreetmap.org/wiki/DE:Tag:emergency%3Dambulance_station)
-| amenity   | police_station        | Polizeiwachen | [ambulance_station](https://wiki.openstreetmap.org/wiki/DE:Tag:emergency%3Dambulance_station)
-| aeroway   | helipad        | Helipads | [helipad](https://wiki.openstreetmap.org/wiki/DE:Tag:aeroway%3Dhelipad)
-| highway   | motorway        | Autobahn | [motorway](https://wiki.openstreetmap.org/wiki/DE:Tag:highway%3Dmotorway)
-| highway   | ?        | Autostrasse | [motorway](https://wiki.openstreetmap.org/wiki/DE:Tag:highway%3Dmotorway)
+|amenity | hospital | Spitäler | [hospital](https://wiki.openstreetmap.org/wiki/DE:Tag:amenity%3Dhospital)
+|amenity | nursing_home | Altersheime, Behindertenheime, Heime| [nursing_home](https://wiki.openstreetmap.org/wiki/DE:Tag:amenity%3Dnursing_home)
+|amenity | ?       | Sozialeinrichtungen | [?](https://wiki.openstreetmap.org/wikiDE:Tag:amenity%3Dnursing_home)
+|railway | station | Bahnhöfe | [railway_station](https://wiki.openstreetmap.org/wiki/DE:Tag:railway%3Dstation)
+|railway | tram | Tramstationen | [tram_station](https://wiki.openstreetmap.org/wiki/Trams)
+|amenity | fire_station | Feuerwachen | [fire_station](https://wiki.openstreetmap.org/wiki/DE:Tag:amenity%3Dfire_station)
+|emergency | ambulance_station |Rettungswachen | [ambulance_station](https://wiki.openstreetmap.org/wiki/DE:Tag:emergency%3Dambulance_station)
+|amenity | police | Polizeiwachen| [police](https://wiki.openstreetmap.org/wiki/Tag:amenity%3Dpolice)
+|aeroway | helipad | Helipads | [helipad](https://wiki.openstreetmap.org/wiki/DE:Tag:aeroway%3Dhelipad)
+|highway | motorway | Autobahn | [motorway](https://wiki.openstreetmap.org/wiki/DE:Tag:highway%3Dmotorway)
+|highway | trunk | Autostrasse | [trunk](https://wiki.openstreetmap.org/wiki/DE:Tag:highway%3Dtrunk)
 
 ----------
 
