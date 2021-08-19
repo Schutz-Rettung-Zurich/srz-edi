@@ -4,7 +4,7 @@ This Page is also available in English, please visit: [English 👈🏻](README_
 
 ## Zweck
 
-Mit dem Emergency Data Inspector (SRZ-EDI) erarbeiten wir zusammen mit der [OST](https://www.ost.ch) ein Tool um unseren Datenmanagern auf einfachste Weise zu ermöglichen, die Daten in unserem [Dispogebiet](#dispogebiet-srz). 
+Mit dem [Emergency Data Inspector (SRZ-EDI)](https://srzedi.srz.borsnet.ch/) erarbeiten wir zusammen mit der [OST](https://www.ost.ch) ein Tool um unseren Datenmanagern auf einfachste Weise zu ermöglichen, die Daten in unserem [Dispogebiet](#dispogebiet-srz). 
 
 ## Erklärung zum Tool
 
