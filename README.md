@@ -14,7 +14,7 @@ Hierhin kommen dann die Erklärungen zum Tool
 
 ### Frontend
 
-Beschreibung zum Frontend
+Das komplette User-Manual zum Front-End findet ihr hier: [UserManual.md](Docs/UserManual.md)
 
 ### CI-CD
 
@@ -22,7 +22,7 @@ Alles was unter dem Namen SRZ publiziert wird, soll sich ans [CI/CD](ci_cd.md) h
 
 ### Backend
 
-Beschreibung zum Backend
+Das komplette User-Manual zur Installation des Backend findet ihr hier: [InstallGuide.md](Docs/InstallGuide.md)
 
 ## Dispogebiet SRZ
 
