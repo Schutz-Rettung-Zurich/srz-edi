@@ -1,3 +1,5 @@
+![logo_SRZ.png](logo_SRZ.png)
+
 # Schutz & Rettung Zürich - Emergency Data Inspector
 
 This Page is also available in English, please visit: [English 👈🏻](README_en.md)
