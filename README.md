@@ -12,7 +12,7 @@ Mit dem [Emergency Data Inspector (SRZ-EDI)](https://srzedi.srz.borsnet.ch/) era
 
 ## Erklärung zum Tool
 
-Hierhin kommen dann die Erklärungen zum Tool
+```startup.sh```um das Tool zu starten
 
 ### Frontend
 
